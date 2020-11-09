@@ -6,10 +6,10 @@
             <div><strong>{{ section.title }} {{isMid}}</strong></div>
         </div>
         <div class="section-right">
-            <div class="btn-arrow invisible">
+            <div :class="['btn-arrow', {invisible: isMid === 0}]">
                 <img src="@/assets/icons8-up-arrow-50.png">
             </div>
-            <div class="btn-arrow">
+            <div :class="['btn-arrow', {invisible: isMid === 6}]">
                 <img src="@/assets/icons8-down-arrow-50.png">
             </div>
             <div class="lbl-edit" id="margin-right-lbl">Add</div>
@@ -19,8 +19,9 @@
     <div :key="row" v-for="row in section.content">
         <div class="row-section">
             <div class="section-left">
-                <div><strong>{{ row.strong}}</strong></div>
-                <div>{{ row.para}} </div>
+                <div><strong>{{ row.strong }}</strong></div>
+                <div>{{ row.para }} </div>
+                <div v-if="row.raw_html" v-html="row.raw_html"></div>
             </div>
             <div class="section-right">
                 <div :class="['btn-arrow', {invisible: section.content.indexOf(row) === 0 }]">

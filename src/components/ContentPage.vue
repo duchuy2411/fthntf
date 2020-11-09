@@ -14,6 +14,7 @@
         </div>
 
         <div class="container-editor">
+            <ProfileSection />
             <div v-bind:key="comp" v-for="comp in arrayComponent">
                 <Section :section="comp" :isMid="arrayComponent.indexOf(comp)" />
             </div>
@@ -24,14 +25,23 @@
 
 <script>
 import Section from './Section/Section'
+import ProfileSection from '@/components/Section/ProfileSection'
 export default {
     components: {
-        Section
+        Section, ProfileSection
     },
 
     data() {
         return {
             arrayComponent: [
+                {
+                    title: "Professional Overview",
+                    content: [{
+                            strong: "",
+                            para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incclassclassunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupclassatat non proclassent, sunt in culpa qui officia deserunt mollit anim class est laborum"
+                        }
+                    ]
+                },
                 {
                     title: "Certificates",
                     content: [{
@@ -47,6 +57,72 @@ export default {
                             para: "Amazon (2020)"
                         }
                     ]
+                },
+                {
+                    title: "Skills",
+                    content: [{
+                            strong: "Back end",
+                            para: "Java, Python"
+                        },
+                        {
+                            strong: "Back end",
+                            para: "Java, Python"
+                        },
+                        {
+                            strong: "Back end",
+                            para: "Python, C#"
+                        }
+                    ]
+                },
+                {
+                    title: "Work History",
+                    content: [{
+                            strong: "Senior Developer",
+                            para: "HTV - Ho Chi Minh 2020"
+                        },
+                        {
+                            strong: "Senior Developer",
+                            para: "HTV - Ho Chi Minh 2020"
+                        },
+                        {
+                            strong: "Senior Developer",
+                            para: "HTV - Ho Chi Minh 2020"
+                        }
+                    ]
+                },
+                {
+                    title: "Education",
+                    content: [{
+                        strong: "HCM University of Science",
+                        para: "2017 - 2013 | Major: Computer Science"
+                    },
+                    {
+                        strong: "HCM University of Science",
+                        para: "2017 - 2013 | Major: Computer Science"
+                    }]
+                },
+                {
+                    title: "Project",
+                    content: [{
+                        strong: "Project One (Oct 2020 - May 2020)",
+                        para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        raw_html: `
+                        <div class="project-content">
+                        <div><strong>Role: </strong> Team Leader</div>
+                        <div><strong>Responsibility: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+                        <div><strong>Team size: </strong>5</div>
+                        <div><strong>Technologies: </strong>Python, VueJS, Postgres</div>`
+                    },
+                    {
+                        strong: "Project One (Oct 2020 - May 2020)",
+                        para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        raw_html: `
+                        <div class="project-content">
+                        <div><strong>Role: </strong> Team Leader</div>
+                        <div><strong>Responsibility: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+                        <div><strong>Team size: </strong>5</div>
+                        <div><strong>Technologies: </strong>Python, VueJS, Postgres</div>`
+                    }]
                 }
             ]
         }
