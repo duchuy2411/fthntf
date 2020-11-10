@@ -19,7 +19,7 @@
                 <img src="@/assets/icons8-down-arrow-50.png">
             </div>
 
-            <div class="lbl-edit" id="margin-right-lbl" @click="showModal">Add</div>
+            <div class="lbl-edit" id="margin-right-lbl" @click="showModal(section.title)">Add</div>
         </div>
     </div>
 
@@ -45,7 +45,7 @@
                     <img src="@/assets/icons8-down-arrow-50.png">
                 </div>
 
-                <div class="lbl-edit" @click="showModal()">EDIT</div>
+                <div class="lbl-edit" @click="showModal(section.title, row)">EDIT</div>
                 <div class="lbl-delete" id="margin-right-lbl">DELETE</div>
             </div>
         </div>

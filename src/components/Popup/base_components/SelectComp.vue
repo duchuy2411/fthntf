@@ -40,6 +40,7 @@ export default {
   border: none;
   width: 100%;
   background-color:#ffffff;
+  outline: none;
 }
 
 .d_select-comp>fieldset>legend{

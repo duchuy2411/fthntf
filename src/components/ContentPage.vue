@@ -24,8 +24,10 @@
 
             </div>
         </div>
-        <Modal v-if="showModal" modalName="project" @hide-modal="handleHideModal" />
     </div>
+
+        <Modal v-if="showModal" :modalName="nameModal" :data="dataFilter"  @hide-modal="handleHideModal" />
+
 </div>
 </template>
 
@@ -33,7 +35,7 @@
 import Section from './Section/Section'
 import ProfileSection from '@/components/Section/ProfileSection'
 import OverviewSection from '@/components/Section/OverviewSection'
-import Modal from '@/components/Popup/base_components/ShowModal'
+import Modal from '@/components/Popup/ShowModal.vue'
 
 export default {
 
@@ -139,7 +141,8 @@ export default {
                 }
             ],
             showModal: false,
-            nameModal: ""
+            nameModal: "",
+            dataFilter: null
         }
     },
 
@@ -198,9 +201,10 @@ export default {
 
             this.arrayComponent = newArray;
         },
-        handleShowModal: function (modal) {
+        handleShowModal: function (modal, row) {
             this.showModal = true;
             this.nameModal = modal;
+            row ? this.dataFilter = row : this.dataFilter = null;
         },
         handleHideModal: function () {
             this.showModal = false;

@@ -6,7 +6,7 @@
             <div><strong>Professional Overview</strong></div>
         </div>
         <div class="section-right">
-            <div class="lbl-edit" id="margin-right-lbl">Edit</div>
+            <div class="lbl-edit" @click="showModal(section.title)" id="margin-right-lbl">Edit</div>
         </div>
     </div>
 

@@ -42,24 +42,25 @@ export default {
 <style scoped>
 fieldset {
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
   border: 1px solid rgb(194, 187, 187);
   margin-bottom:1rem;
 }
 
-.d_input-text>fieldset > input {
+.d_input-text > fieldset > input {
     width:100%;
     border:none;
 }
 
 
-.d_input-text>fieldset>legend>p{
-  margin: 0 0.5rem 0 0 ;
+.d_input-text > fieldset > legend > p{
+  margin: 0 0.5rem;
   font-size: 0.875rem;
 }
 
-.d_input-text>fieldset>input:focus{
-    border:none;
+.d_input-text > fieldset > input:focus{
+    border: none;
+    outline: none;
 }
 
 .d_focus-in{

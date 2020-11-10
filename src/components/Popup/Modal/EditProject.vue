@@ -38,10 +38,10 @@
 </template>
 
 <script>
-import InputTextComp from "./InputTextComp.vue";
-import InputDatePickerComp from "./InputDatePickerComp.vue";
-import ButtonComp from "./ButtonComp.vue";
-import SelectComp from "./SelectComp.vue";
+import InputTextComp from "@/components/Popup/base_components/InputTextComp.vue";
+import InputDatePickerComp from "@/components/Popup/base_components/InputDatePickerComp.vue";
+import ButtonComp from "@/components/Popup/base_components/ButtonComp.vue";
+import SelectComp from "@/components/Popup/base_components/SelectComp.vue";
 
 export default {
   name: "form-body",

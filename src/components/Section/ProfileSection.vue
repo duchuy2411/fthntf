@@ -5,7 +5,7 @@
             <strong>Profile</strong>
         </div>
         <div class="section-right">
-            <div class="lbl-edit" id="lbl-edit-profile">Edit</div>
+            <div class="lbl-edit" @click="showModal(section.title)" id="lbl-edit-profile">Edit</div>
         </div>
     </div>
     <div class="row-section">

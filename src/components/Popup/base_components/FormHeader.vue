@@ -1,12 +1,15 @@
 <template>
   <div class="d_header">
-    <p>Project</p>
+    <p>{{ title }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "form-header",
+  props: {
+    title: String
+  },
   data() {
     return {};
   },
