@@ -1,6 +1,5 @@
 <template>
 <div class="content">
-
     <div class="container-content">
 
         <div class="btn-spin">
@@ -14,11 +13,18 @@
         </div>
 
         <div class="container-editor">
-            <ProfileSection />
+
+            <ProfileSection :showModal="handleShowModal" />
+
+            <OverviewSection :showModal="handleShowModal" :content="arrayComponent[0].content[0].para" />
+
             <div v-bind:key="comp" v-for="comp in arrayComponent">
-                <Section :section="comp" :isMid="arrayComponent.indexOf(comp)" />
+
+                <Section v-if="comp.title !== `Professional Overview`" :section="comp" :isMid="arrayComponent.indexOf(comp)" :clickSectionUp="handleSectionUp" :clickSectionDown="handleSectionDown" :clickItemUp="handleItemUp" :clickItemDown="handleItemDown" :showModal="handleShowModal" />
+
             </div>
         </div>
+        <Modal v-if="showModal" modalName="project" @hide-modal="handleHideModal" />
     </div>
 </div>
 </template>
@@ -26,21 +32,26 @@
 <script>
 import Section from './Section/Section'
 import ProfileSection from '@/components/Section/ProfileSection'
+import OverviewSection from '@/components/Section/OverviewSection'
+import Modal from '@/components/Popup/base_components/ShowModal'
+
 export default {
+
     components: {
-        Section, ProfileSection
+        Section,
+        ProfileSection,
+        OverviewSection,
+        Modal
     },
 
     data() {
         return {
-            arrayComponent: [
-                {
+            arrayComponent: [{
                     title: "Professional Overview",
                     content: [{
-                            strong: "",
-                            para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incclassclassunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupclassatat non proclassent, sunt in culpa qui officia deserunt mollit anim class est laborum"
-                        }
-                    ]
+                        strong: "",
+                        para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incclassclassunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupclassatat non proclassent, sunt in culpa qui officia deserunt mollit anim class est laborum"
+                    }]
                 },
                 {
                     title: "Certificates",
@@ -50,10 +61,10 @@ export default {
                         },
                         {
                             strong: "AWS Solution Architect - Professional",
-                            para: "Amazon (2020)"
+                            para: "Amazon (2019)"
                         },
                         {
-                            strong: "AWS Solution Architect - Professional",
+                            strong: "AWS Solution Architect - Associate",
                             para: "Amazon (2020)"
                         }
                     ]
@@ -61,16 +72,16 @@ export default {
                 {
                     title: "Skills",
                     content: [{
-                            strong: "Back end",
+                            strong: "Back-end",
                             para: "Java, Python"
                         },
                         {
-                            strong: "Back end",
-                            para: "Java, Python"
+                            strong: "Front-end",
+                            para: "HTML/CSS, Javascript, jQuery, Bootstrap, VueJs"
                         },
                         {
-                            strong: "Back end",
-                            para: "Python, C#"
+                            strong: "Database",
+                            para: "MySQL, Postgre, MongoDB"
                         }
                     ]
                 },
@@ -81,52 +92,121 @@ export default {
                             para: "HTV - Ho Chi Minh 2020"
                         },
                         {
-                            strong: "Senior Developer",
-                            para: "HTV - Ho Chi Minh 2020"
+                            strong: "Developer",
+                            para: "ABC - Ho Chi Minh 2020"
                         },
                         {
-                            strong: "Senior Developer",
-                            para: "HTV - Ho Chi Minh 2020"
+                            strong: "Junior Developer",
+                            para: "XYZ - Ho Chi Minh 2020"
                         }
                     ]
                 },
                 {
                     title: "Education",
                     content: [{
-                        strong: "HCM University of Science",
-                        para: "2017 - 2013 | Major: Computer Science"
-                    },
-                    {
-                        strong: "HCM University of Science",
-                        para: "2017 - 2013 | Major: Computer Science"
-                    }]
+                            strong: "HCM University of Science",
+                            para: "2017 - 2013 | Major: Computer Science"
+                        },
+                        {
+                            strong: "HCM University of Science",
+                            para: "2017 - 2013 | Major: Computer Science"
+                        }
+                    ]
                 },
                 {
                     title: "Project",
                     content: [{
-                        strong: "Project One (Oct 2020 - May 2020)",
-                        para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                        raw_html: `
+                            strong: "Project One (Oct 2020 - May 2020)",
+                            para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            raw_html: `
                         <div class="project-content">
                         <div><strong>Role: </strong> Team Leader</div>
                         <div><strong>Responsibility: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
                         <div><strong>Team size: </strong>5</div>
                         <div><strong>Technologies: </strong>Python, VueJS, Postgres</div>`
-                    },
-                    {
-                        strong: "Project One (Oct 2020 - May 2020)",
-                        para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                        raw_html: `
+                        },
+                        {
+                            strong: "Project two (Oct 2020 - May 2020)",
+                            para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            raw_html: `
                         <div class="project-content">
                         <div><strong>Role: </strong> Team Leader</div>
                         <div><strong>Responsibility: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
                         <div><strong>Team size: </strong>5</div>
                         <div><strong>Technologies: </strong>Python, VueJS, Postgres</div>`
-                    }]
+                        }
+                    ]
                 }
-            ]
+            ],
+            showModal: false,
+            nameModal: ""
         }
-    }
+    },
+
+    methods: {
+        handleSectionUp: function (sectionObject) {
+            const indexSection = this.arrayComponent.indexOf(sectionObject);
+            console.log(indexSection);
+
+            const newArray = [...this.arrayComponent];
+            let temp = newArray[indexSection - 1];
+            newArray[indexSection - 1] = newArray[indexSection]
+            newArray[indexSection] = temp
+
+            this.arrayComponent = newArray
+        },
+        handleSectionDown: function (sectionObject) {
+            const indexSection = this.arrayComponent.indexOf(sectionObject);
+            console.log(indexSection);
+
+            const newArray = [...this.arrayComponent];
+            let temp = newArray[indexSection + 1];
+            newArray[indexSection + 1] = newArray[indexSection]
+            newArray[indexSection] = temp
+
+            this.arrayComponent = newArray
+        },
+        handleItemUp: function (section, item) {
+            const indexSection = this.arrayComponent.indexOf(section);
+            const indexItem = this.arrayComponent[indexSection].content.indexOf(item);
+            console.log(indexSection, " ", indexItem);
+
+            let newArray = [...this.arrayComponent];
+            let newSection = [...newArray[indexSection].content];
+
+            let temp = newSection[indexItem - 1]
+            newSection[indexItem - 1] = newSection[indexItem];
+            newSection[indexItem] = temp
+
+            newArray[indexSection].content = newSection;
+
+            this.arrayComponent = newArray;
+        },
+        handleItemDown: function (section, item) {
+            const indexSection = this.arrayComponent.indexOf(section);
+            const indexItem = this.arrayComponent[indexSection].content.indexOf(item);
+            console.log(indexSection, " ", indexItem);
+
+            let newArray = [...this.arrayComponent];
+            let newSection = [...newArray[indexSection].content];
+
+            let temp = newSection[indexItem + 1]
+            newSection[indexItem + 1] = newSection[indexItem];
+            newSection[indexItem] = temp
+
+            newArray[indexSection].content = newSection;
+
+            this.arrayComponent = newArray;
+        },
+        handleShowModal: function (modal) {
+            this.showModal = true;
+            this.nameModal = modal;
+        },
+        handleHideModal: function () {
+            this.showModal = false;
+            console.log(this.showModal);
+        }
+    },
 }
 </script>
 
@@ -282,6 +362,11 @@ table {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.btn-arrow:hover {
+    background-color: rgb(238, 238, 238);
 }
 
 .btn-arrow img {
